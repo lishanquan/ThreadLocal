@@ -125,9 +125,9 @@ protected T initialValue() { }
     }
 ```
 &emsp;&emsp;至此，我们可以明白ThreadLocal是如何为每个线程创建变量的副本的：<br>
-&emsp;&emsp;*首先，每个线程Thread内部有一个Thread.ThreadLocalMap类型的成员变量threadlocals，这个threadlocals就是用来存储实际的变量副本的，键值为当前ThreadLocal变量，value为变量副本（即T类型的变量）。*<br>
-&emsp;&emsp;*初始时，在Thread里面，threadlocals为空，当通过ThreadLocal变量调用get()方法或者set()方法，就会对Thread类中的threadlocals进行初始化，并且以当前ThreadLocal为键值，以ThreadLocal要保存的副本变量为value，存到threadlocals中。*<br>
-&emsp;&emsp;*然后，在当前线程里面，如果要使用副本变量，就可以通过get方法在threadlocals里面查找。*<br>
+&emsp;&emsp;首先，每个线程Thread内部有一个Thread.ThreadLocalMap类型的成员变量threadlocals，这个threadlocals就是用来存储实际的变量副本的，键值为当前ThreadLocal变量，value为变量副本（即T类型的变量）。<br>
+&emsp;&emsp;初始时，在Thread里面，threadlocals为空，当通过ThreadLocal变量调用get()方法或者set()方法，就会对Thread类中的threadlocals进行初始化，并且以当前ThreadLocal为键值，以ThreadLocal要保存的副本变量为value，存到threadlocals中。<br>
+&emsp;&emsp;然后，在当前线程里面，如果要使用副本变量，就可以通过get方法在threadlocals里面查找。<br>
 ---
 &emsp;&emsp;*总结*<br>
 &emsp;&emsp;1. 通过ThreadLocal创建的副本是存储在每个线程自己的threadlocals中的；<br>
